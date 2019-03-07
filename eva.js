@@ -62,9 +62,12 @@
       }
       return newArr;
     },
-    differenceWith:function(arr, value, func) {
+    differenceWith:function(arr, value, methods) {
       var newArr = arr;
       return newArr;
+    },
+    drop:function (arr, num) {
+      
     }
   }
 })(window);
