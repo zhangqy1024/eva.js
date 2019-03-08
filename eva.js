@@ -61,13 +61,54 @@
         }
       }
       return newArr;
-    },
+    },/*
     differenceWith:function(arr, value, methods) {
       var newArr = arr;
       return newArr;
+    },*/
+    drop:function(arr, num) {
+      if(num){
+        arr.splice(0,num);
+      }
+      return arr;
     },
-    drop:function (arr, num) {
-      
+    dropRight:function(arr,num) {
+      var newArr = [];
+      var len = arr.length;
+      if(num) {
+        if(len > num) {
+          newArr = arr.slice(0,len-num);
+        }
+      }else{
+        newArr = arr.slice(0,len-1);
+      }
+      return newArr;
+    },/*
+    dropRightWhile:function(arr, methods) {
+      return arr;
+    },
+    dropWhile:function(arr, methods) {
+      return arr;
+    },*/
+    fill:function(arr, value, start, end) {
+      if(!start && !end) {
+        for (var i = 0; i < arr.length; i++) {
+          arr[i]=value
+        }
+      }else if(start && !end) {
+        for (var i = start; i < arr.length; i++) {
+          arr[i]=value
+        }
+      }else if(start && end && end >= start) {
+        for (var i = start; i < end; i++) {
+          arr[i]=value
+        }
+      }
+      return arr;
+    },
+    findIndex:function(arr, methods, fromIndex) {
+      var index = arr.length;
+      return index;
     }
   }
 })(window);
