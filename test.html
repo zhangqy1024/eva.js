@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #app {
+      width: 1080px;
+      margin: 0 auto;
+      padding: 200px;
+      text-align: center;
+      font-size: 60px;
+    }
+  </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="lodash.js">lodash.js</script>
+    <script src="eva.js">eva.js</script>
+    <script>
+      var arr = [1,2,4,5,6,4];
+      var newArr = _.initial(arr);
+      console.log(newArr);
+      
+      var app = document.getElementById('app');
+      app.innerHTML = newArr;
+    </script>
+</body>
+</html>
