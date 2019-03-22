@@ -106,9 +106,93 @@
       }
       return arr;
     },
-    findIndex:function(arr, methods, fromIndex) {
-      var index = arr.length;
-      return index;
+    findIndex:function(arr, item, fromIndex) { // 功能未实现
+      for (var i = fromIndex == undefined ? 0 : fromIndex; i < arr.length; i++) {
+        if(typeof item === 'function') { // 如果传入的方法是函数
+          if (item(arr[i])) {
+            return i;
+          }
+        } else if (typeof item === 'object' && Array.prototype.isPrototypeOf(item)) { // 判断传入的item是否为数组
+          if (arr[i].item[0] == item[1]) {
+            return i;
+          }
+        } else if (typeof item === 'object' && !Array.prototype.isPrototypeOf(item)) { // 判断传入的item是否为对象
+          if (arr[i] === item) {
+            return i;
+          }
+        } else if (typeof item === 'string') {
+          if (arr[i].item) {
+            return i;
+          }
+        }
+        return -1;
+      }
+    },
+    findLastIndex:function(arr, item, fromIndex) { // fromIndex = arr.length-1
+      //此方法同上
+    },
+    flatten:function(arr) { // 展开数组
+      var newArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        if ( Array.prototype.isPrototypeOf(arr[i]) ) {
+          for (var j =0; j < arr[i].length; j++) {
+            newArr.push(arr[i][j]);
+          }
+        } else {
+          newArr.push(arr[i]);
+        }
+      }
+      return newArr;
+    },
+    flattenDeep:function(arr) { // 深度展开数组
+      var str = JSON.stringify(arr);
+      str = str.replace(/[\[\]]/g, '');
+      arr = eval('['+str+']');
+      return arr;
+    },
+    flattenDepth:function(arr, depth) { // 根据depth值展开数组
+      if(!depth) depth = 1;
+      var newArr = [];
+      for (var p = 0; p < depth; p++) {
+        newArr = _.flatten(arr);
+        arr = newArr;
+      }
+      return newArr;
+    },
+    fromPairs:function(pairs) {
+      var newArr = {};
+      for (var i = 0; i < pairs.length; i++) {
+        newArr[pairs[i][0]] = pairs[i][1];
+      }
+      return newArr;
+    },
+    head:function(arr) {
+      if(arr){
+        return arr[0];
+      }
+      return;
+    },
+    indexOf:function(arr, value, fromIndex) {
+      if (!fromIndex) fromIndex = 0;
+      if (value && fromIndex === 0) {
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i] === value) {
+            return i;
+          }
+        }
+      } else if (value && fromIndex) {
+        for (var i = fromIndex; i < arr.length; i++) {
+          if (arr[i] === value) {
+            return i;
+          }
+        }
+      }else{
+        return -1;
+      }
+    },
+    initial:function(arr) {
+      var newArr = [];
+      return newArr;
     }
   }
 })(window);
